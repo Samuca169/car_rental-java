@@ -2,6 +2,8 @@ package model.entities;
 
 import java.util.Date;
 
+import exception.RentalException;
+
 public class CarRental {
 
 	private Date start;
@@ -49,5 +51,11 @@ public class CarRental {
 
 	public void setInvoice(Invoice invoice) {
 		this.invoice = invoice;
+	}
+	
+	public void validateDates(Date start, Date finish) {
+		if (start.after(finish)) {
+			throw new RentalException("Pickup date has to be later than return date");
+		}
 	}
 }
